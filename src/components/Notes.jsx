@@ -10,7 +10,7 @@ function Notes() {
     body: ''
   })
 
-  const [notes] = useState([
+  const [notes, setNotes] = useState([
     {id: 1, title:"Review map and filter", body:"Redo the TodoMVC steps without looking at the guide."}, 
     {id: 2, title:"Prepare for the quiz", body: "Practice writing one handler for many inputs."},
   ])
@@ -21,6 +21,18 @@ function Notes() {
       ...prev,
       [name]: value
     }))
+  }
+  
+  const handleSubmit = (e) => {
+    e.preventDefault() 
+    if (!formData.title.trim() || !formData.body.trim()) return
+    const newNote = {
+      id: crypto.randomUUID(),
+      title: formData.title,
+      body: formData.body
+    }
+    setNotes((prevNotes) => [...prevNotes, newNote])
+    setFormData({ title: '', body: '' })
   }
 
   return (
@@ -39,7 +51,7 @@ function Notes() {
           />
         </div>
 
-        <form className="grid gap-3">
+        <form className="grid gap-3" onSubmit={handleSubmit}>
           <p className="text-[13px] font-normal tracking-wide text-[#949494]">NEW NOTE</p>
           <input
             name="title"
@@ -61,7 +73,7 @@ function Notes() {
           >
             Add note
           </button>
-        </form>
+        </form >
       </aside>
  
       <section className="px-12 py-11">
