@@ -1,9 +1,10 @@
 import { useState, useContext } from 'react'
-import { SettingsContext } from 'SettingsContext.js'
+import { SettingsContext } from '../SettingsContext.js'
 
-function NoteCard({ title }) {
+function NoteCard({ title , body}) {
   const [isOpen, setIsOpen] = useState(false)
   const { largeText } = useContext(SettingsContext)
+  console.log('render', title)
 
   return (
     <div>
@@ -24,6 +25,7 @@ function NoteCard({ title }) {
               : 'mt-3 text-[17px] break-words whitespace-pre-wrap text-[#4d4d4d]'
           }
         >
+         {body}
         </p>
       )}
       <button

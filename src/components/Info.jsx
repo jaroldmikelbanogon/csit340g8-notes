@@ -1,5 +1,5 @@
 import { useContext } from 'react'
-import { SettingsContext } from 'SettingsContext.js'
+import { SettingsContext } from '../SettingsContext.js'
 function Info({ name }) {
   const { largeText, setLargeText } = useContext(SettingsContext)
   return (

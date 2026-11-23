@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { SettingsContext } from 'SettingsContext.js'
+import { SettingsContext } from './SettingsContext.js'
 import Notes from './components/Notes.jsx'
 import Info from './components/Info.jsx'
  
