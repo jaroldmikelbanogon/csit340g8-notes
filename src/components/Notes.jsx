@@ -2,9 +2,9 @@ import NoteCard from './NoteCard.jsx'
 import { useState, useEffect, useRef, useMemo } from 'react'
 
 function Notes() {
-  const [formData, setFormData] = useState({
-    title: '',
-    body: ''
+  const [formData, setFormData] = useState(() => {
+    const saved = localStorage.getItem('draft')
+    return saved ? JSON.parse(saved) : { title: '', body: '' }
   })
 
   const [search, setSearch] = useState('')
@@ -36,7 +36,8 @@ function Notes() {
 
   useEffect(() => {
     localStorage.setItem('notes', JSON.stringify(notes))
-  }, [notes])
+    localStorage.setItem('draft', JSON.stringify(formData))
+  }, [formData, notes])
 
   useEffect(() => {
     const id = setTimeout(() => {
